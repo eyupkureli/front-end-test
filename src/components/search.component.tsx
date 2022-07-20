@@ -7,14 +7,20 @@ import { SelectComponent } from './select.component'
 import { route } from 'preact-router';
 import { NumberComponent } from './number.component'
 import { useRouter } from 'preact-router'
+import { useState } from "preact/hooks";
 
 export default function SearchComponent(): JSX.Element {
   const [ searchParams ] = useRouter();
+  // const [search, setNewSearch] = useState("");
   const onSubmit = (e: SubmitEvent) => {
     e.preventDefault();
     const url = `/results?location=${e.target['location']?.value}&departureDate=${e.target['departureDate'].value}&duration=${e.target['duration'].value}&adults=${e.target['adults'].value}`;
     route(url, true)
   }
+
+  // const handleSearchChange = (e: SubmitEvent)) => {
+  //   setNewSearch(e.target.value);
+  // };
 
   return (
     <section className={`${styles['search-form']} full-bleed`}>
@@ -39,6 +45,9 @@ export default function SearchComponent(): JSX.Element {
             <div className={styles["col"]}>
               <NumberComponent name="star" label="Star Rating" id="star_field" min={1} max={5} value={searchParams?.matches?.star || 1} required={true} />
             </div>
+            {/* <div className={styles["col"]}>
+            <input type="text" value={search} onChange={handleSearchChange} />
+            </div> */}
             <div className={styles["col"]}>
               <ButtonComponent text="Search" type="SUBMIT" onClick={onSubmit}/>
             </div>
