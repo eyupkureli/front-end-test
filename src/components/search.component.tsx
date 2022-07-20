@@ -34,6 +34,12 @@ export default function SearchComponent(): JSX.Element {
               <NumberComponent name="adults" label="Adults" id="adults_field" min={1} max={9} value={searchParams?.matches?.adults || 2} required={true} />
             </div>
             <div className={styles["col"]}>
+              <NumberComponent name="perprice" label="Person Per Price" id="perprice_field" min={1} max={999999} value={searchParams?.matches?.perprice || 1} required={true} />
+            </div>
+            <div className={styles["col"]}>
+              <NumberComponent name="star" label="Star Rating" id="star_field" min={1} max={5} value={searchParams?.matches?.star || 1} required={true} />
+            </div>
+            <div className={styles["col"]}>
               <ButtonComponent text="Search" type="SUBMIT" onClick={onSubmit}/>
             </div>
           </div>        
